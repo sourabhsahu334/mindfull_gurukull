@@ -18,7 +18,7 @@ app.get("/",async(req,res)=>{
 app.post("/login",async(req,res)=>{
   try {
     const {email,password}=req.body;
-  const user =await Users.find({email:email});
+  const user =await Users.findOne({email:email});
   
   if(user){
     if(user.password==password){
