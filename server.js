@@ -19,13 +19,21 @@ app.post("/login",async(req,res)=>{
   try {
     const {email,password}=req.body;
   const user =await Users.find({email:email});
+  
   if(user){
-    res.json({
-      success:true
-    })
+    if(user.password==password){
+      return res.json({
+        success:true
+      })
+    }
+    else{
+      return res.json({
+        success:false
+      })
+    }
   }
   else{
-    res.json({
+    return res.json({
       success:false,
       error:"user is not exist"
     })
